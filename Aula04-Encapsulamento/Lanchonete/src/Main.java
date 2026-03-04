@@ -31,10 +31,43 @@ public class Main {
                     System.out.print("Informe a quantidade desejada: ");
                     int quantidade = sc.nextInt();
                     sc.nextLine();
-                    lanche.decrementarEstoque(quantidade);
+
+                    if (lanche.decrementarEstoque(quantidade)) {
+                        System.out.println("Você pediu " + quantidade + " " +
+                                lanche.getNome() + " o valor total foi de R$ " +
+                                lanche.valorTotal(quantidade));
+                    }
                     break;
+
+                case "2":
+                    System.out.print("Informe a quantidade desejada: ");
+                    int quantidadeEstoque = sc.nextInt();
+                    sc.nextLine();
+
+                    lanche.incrementarEstoque(quantidadeEstoque);
+                    break;
+
                 case "3":
                     System.out.println(lanche.toString());
+                    break;
+
+                case "4":
+                    System.out.print("Informe uma nova descrição do lanche: ");
+                    String descricao = sc.nextLine();
+
+                    lanche.setDescricao(descricao);
+                    break;
+                case "5":
+                    System.out.print("Informe o novo valor do lanche: ");
+                    double valorLanche = sc.nextDouble();
+                    sc.nextLine();
+
+                    lanche.setValor(valorLanche);
+                    break;
+                case "6":
+                    return; //Sai do Switch Case
+                default:
+                    System.out.println("Opção inválida");
                     break;
             }
         }

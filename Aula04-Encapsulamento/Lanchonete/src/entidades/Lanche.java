@@ -15,25 +15,72 @@ public class Lanche {
         this.disponivel = estoque > 0;
     }
 
-    public void decrementarEstoque(int quantidade) {
 
+
+    //Getters
+    public String getNome() {
+        return nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public int getEstoque() {
+        return estoque;
+    }
+
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    //Setters
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+        System.out.println("Descrição alterada com sucesso!");
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+
+    public boolean decrementarEstoque(int quantidade) {
         if (quantidade <= 0) {
             System.out.println("Informe um valor maior que zero");
+            return false;
         } else if (quantidade > this.estoque) {
             System.out.println("Sem Estoque");
+            return false;
         } else {
             this.estoque -= quantidade;
             System.out.println("Pedido Efetuado com sucesso");
             alterarDisponivel();
+            return true;
         }
     }
 
-    public void alterarDisponivel() {
-        if (this.estoque > 0) {
-            this.disponivel = true;
-        } else  {
-            this.disponivel = false;
+    public void incrementarEstoque(int quantidade) {
+        if (quantidade <= 0) {
+            System.out.println("Informe um valor maior que zero");
+        } else {
+            this.estoque += quantidade;
         }
+    }
+
+    public double valorTotal(int quantidade) {
+        return quantidade * this.valor;
+    }
+
+    public void alterarDisponivel() {
+        this.disponivel = this.estoque > 0;
     }
 
 
